@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
-  <main>
-    <div class="flex items-center">
-      <h1 class="text-primary-600 text-5xl">Bill 祕技</h1>
-      <h1 class="text-xl">Bill 祕技</h1>
-    </div>
-    <TheWelcome />
+  <main class="">
+    <h1 class="text-5xl mb-5">Home Page</h1>
+    <p class="text-5xl">點擊路由開始</p>
+    <img class="mt-10 mx-auto" src="../assets/下載.jpeg" alt="">
   </main>
 </template>

@@ -1,14 +1,17 @@
+<script setup lang="ts">
+import NavBar from '@/components/NavBar.vue';
+</script>
 <template>
-  <div class="layout">
-    <header>
-      <h1>表頭</h1>
+  <div class="flex flex-col min-h-[90vh]">
+    <header class="mb-10">
+      <NavBar></NavBar>
     </header>
 
     <main>
       <slot></slot>
     </main>
 
-    <footer>
+    <footer class="mt-auto">
       <p>&copy; 2024 My Application</p>
     </footer>
   </div>

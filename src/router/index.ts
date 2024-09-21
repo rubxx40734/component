@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import NotFound from '@/views/NotFound.vue'
+import FromPage from '@/views/FromPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,7 +13,13 @@ const router = createRouter({
       meta: { layout: 'default' },
     },
     {
-      path: '/notFound',
+      path: '/FromPage',
+      name: 'fromPage',
+      component: FromPage,
+      meta: { layout: 'default' },
+    },
+    {
+      path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: NotFound,
       meta: { layout: 'blank' }
