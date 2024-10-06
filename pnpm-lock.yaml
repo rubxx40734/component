@@ -11,6 +11,9 @@ dependencies:
   pinia:
     specifier: ^2.1.7
     version: 2.2.2(typescript@5.4.5)(vue@3.5.3)
+  vant:
+    specifier: ^4.9.7
+    version: 4.9.7(vue@3.5.3)
   vue:
     specifier: ^3.4.29
     version: 3.5.3(typescript@5.4.5)
@@ -1040,6 +1043,18 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
+  /@vant/popperjs@1.3.0:
+    resolution: {integrity: sha512-hB+czUG+aHtjhaEmCJDuXOep0YTZjdlRR+4MSmIFnkCQIxJaXLQdSsR90XWvAI2yvKUI7TCGqR8pQg2RtvkMHw==}
+    dev: false
+
+  /@vant/use@1.6.0(vue@3.5.3):
+    resolution: {integrity: sha512-PHHxeAASgiOpSmMjceweIrv2AxDZIkWXyaczksMoWvKV2YAYEhoizRuk/xFnKF+emUIi46TsQ+rvlm/t2BBCfA==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.5.3(typescript@5.4.5)
+    dev: false
+
   /@vitejs/plugin-vue@5.1.3(vite@5.4.3)(vue@3.5.3):
     resolution: {integrity: sha512-3xbWsKEKXYlmX82aOHufFQVnkbMC/v8fLpWwh6hWOUrK5fbbtBh9Q/WWse27BFgSy2/e2c0fz5Scgya9h2GLhw==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -1271,6 +1286,10 @@ packages:
       '@vue/compiler-ssr': 3.5.3
       '@vue/shared': 3.5.3
       vue: 3.5.3(typescript@5.4.5)
+
+  /@vue/shared@3.5.11:
+    resolution: {integrity: sha512-W8GgysJVnFo81FthhzurdRAWP/byq3q2qIw70e0JWblzVhjgOMiC2GyovXrZTFQJnFVryYaKGP3Tc9vYzYm6PQ==}
+    dev: false
 
   /@vue/shared@3.5.3:
     resolution: {integrity: sha512-Jp2v8nylKBT+PlOUjun2Wp/f++TfJVFjshLzNtJDdmFJabJa7noGMncqXRM1vXGX+Yo2V7WykQFNxusSim8SCA==}
@@ -3084,6 +3103,17 @@ packages:
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
+
+  /vant@4.9.7(vue@3.5.3):
+    resolution: {integrity: sha512-bFkjF6zZf8l6WxPwDn6vd2PZISpUhm4u3fBJStUh+BDll7yaAv610j56DDYoL3HM8tws9nanGN4WBbTrKToMrA==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vant/popperjs': 1.3.0
+      '@vant/use': 1.6.0(vue@3.5.3)
+      '@vue/shared': 3.5.11
+      vue: 3.5.3(typescript@5.4.5)
+    dev: false
 
   /vite-hot-client@0.2.3(vite@5.4.3):
     resolution: {integrity: sha512-rOGAV7rUlUHX89fP2p2v0A2WWvV3QMX2UYq0fRqsWSvFvev4atHWqjwGoKaZT1VTKyLGk533ecu3eyd0o59CAg==}

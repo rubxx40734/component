@@ -10,7 +10,7 @@ const router = [
   },
   {
     label: 'restful封裝',
-    router: '/notFound'
+    router: '/RestfulPage'
   },
   {
     label: 'gql封裝',

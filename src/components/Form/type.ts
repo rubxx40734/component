@@ -29,3 +29,7 @@ export type DefaultInput = {
   required?: boolean
   options?: { label: string, value: string }[]
 }
+
+export type ReqConfig = {
+  isFile?: boolean
+}
