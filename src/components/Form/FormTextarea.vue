@@ -9,15 +9,18 @@ const props = withDefaults(defineProps<DefaultInput>(), {
   uniKey: '',
   placeholder: '',
   rules: [],
-  required: true
+  required: true,
+  modelValue: {}
 })
 
-const modalValue = ref('')
+const localValue = ref(props.modelValue[props.uniKey] || '')  // 與 props 同步
+
+// const modalValue = ref('')
 const errorMessage = ref('')
 
 const emit = defineEmits(['update-value'])
 
-watch(modalValue, (v) => {
+watch(localValue, (v) => {
   validateInput(v)
   emit('update-value', {
     key: props.uniKey,
@@ -48,7 +51,7 @@ const validateInput = (value: string) => {
 </script>
 
 <template>
-  <textarea :placeholder="placeholder" v-model="modalValue" class="w-full p-2 border border-primary-300"></textarea>
+  <textarea :placeholder="placeholder" v-model="localValue" class="w-full p-2 border border-primary-300"></textarea>
 
   <p v-if="errorMessage" class="text-red-500 text-xs mt-1">{{ errorMessage }}</p>
 </template>

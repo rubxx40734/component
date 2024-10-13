@@ -67,6 +67,15 @@ const formConfig = [
     placeholder: '請輸入敘述',
     rules: [],
     required: true
+  },
+  {
+    formType: 'textarea',
+    label: '意見表單',
+    col: '12',
+    uniKey: 'ogImage',
+    placeholder: '請輸入敘述',
+    rules: [],
+    required: true
   }
 ]
 

@@ -16,13 +16,13 @@ const props = withDefaults(defineProps<DefaultInput>(), {
 
 const localValue = ref(props.modelValue[props.uniKey] || '')  // 與 props 同步
 
-const modalValue = ref<string | FileList | null>('')
+// const modalValue = ref<string | FileList | null>('')
 const errorMessage = ref('')
 const uploadImage = ref('')
 
 const emit = defineEmits(['update-value'])
 
-watch(modalValue, (v) => {
+watch(localValue, (v) => {
   if (props.type === 'file' && v instanceof FileList) {
     console.log('file', v)
     emit('update-value', {
@@ -38,10 +38,10 @@ watch(modalValue, (v) => {
   }
 })
 
-console.log('最內層', props.modelValue)
+
 watch(() => props.modelValue, (newValue) => {
   if (newValue && props.uniKey in newValue) {
-    modalValue.value = newValue[props.uniKey];
+    localValue.value = newValue[props.uniKey];
   }
 }, { immediate: true });
 
@@ -90,10 +90,9 @@ const methodUpdate = async (v: any) => {
 </script>
 
 <template>
-  <!-- <input :type="type" :placeholder="placeholder" v-model="modalValue" class="w-full p-2 border border-primary-300"> -->
-
+  <!-- <input :type="type" :placeholder="placeholder" v-model="localValue" class="w-full p-2 border border-primary-300"> -->
   <!-- 如果是普通输入框 -->
-  <input v-if="type !== 'file'" :type="type" :placeholder="placeholder" v-model="modalValue"
+  <input v-if="type !== 'file'" :type="type" :placeholder="placeholder" v-model="localValue"
     class="w-full p-2 border border-primary-300">
 
   <!-- 如果是文件输入框 -->
