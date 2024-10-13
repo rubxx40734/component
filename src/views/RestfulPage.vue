@@ -7,8 +7,8 @@
       <p>敘述:{{ item.description }}</p>
     </div>
 
-    <div>
-      <FromIndex :config="formConfig" @update-value="getFormValue" />
+    <div v-for="item in apiDataLists" :key="item.uid">
+      <FromIndex :config="formConfig" :model-value="item" @update-value="getFormValue" />
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ import request from '@/libs/request'
 import FromIndex from '@/components/Form/FromIndex.vue';
 
 
-const apiDataLists = ref()
+const apiDataLists: any = ref({})
 const formData = ref({})
 
 const getData = async () => {
@@ -29,6 +29,12 @@ const getData = async () => {
   })
   console.log('metasList', metasList.result.data)
   apiDataLists.value = metasList.result.data
+
+
+  if (apiDataLists.value.length) {
+    formData.value = apiDataLists.value
+  }
+  console.log(formData.value)
 }
 
 const formConfig = [

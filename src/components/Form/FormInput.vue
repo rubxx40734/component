@@ -10,8 +10,11 @@ const props = withDefaults(defineProps<DefaultInput>(), {
   uniKey: '',
   placeholder: '',
   rules: [],
-  required: true
+  required: true,
+  modelValue: {}
 })
+
+const localValue = ref(props.modelValue[props.uniKey] || '')  // 與 props 同步
 
 const modalValue = ref<string | FileList | null>('')
 const errorMessage = ref('')
@@ -21,6 +24,7 @@ const emit = defineEmits(['update-value'])
 
 watch(modalValue, (v) => {
   if (props.type === 'file' && v instanceof FileList) {
+    console.log('file', v)
     emit('update-value', {
       key: props.uniKey,
       value: v
@@ -32,9 +36,15 @@ watch(modalValue, (v) => {
       value: v
     })
   }
-
-
 })
+
+console.log('最內層', props.modelValue)
+watch(() => props.modelValue, (newValue) => {
+  if (newValue && props.uniKey in newValue) {
+    modalValue.value = newValue[props.uniKey];
+  }
+}, { immediate: true });
+
 
 const validateInput = (value: string) => {
   errorMessage.value = ''
@@ -66,9 +76,13 @@ const methodUpdate = async (v: any) => {
     const uploadData = await request('/sys/uploads/single', 'post', formData, {
       isFile: true
     })
-    console.log('uploadData', uploadData)
     if (uploadData.status) {
       uploadImage.value = `${import.meta.env.VITE_API_URL}${uploadData.result.sourcePath}`
+      console.log(props.uniKey)
+      emit('update-value', {
+        key: props.uniKey,
+        value: uploadImage.value
+      })
     }
 
   }

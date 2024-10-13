@@ -17,6 +17,7 @@ export type OptionItem = {
 export type DefaultPropsData = {
   config: FormConfinItem[]
   confirm?: object
+  modelValue?: object
 }
 
 export type DefaultInput = {
@@ -28,6 +29,7 @@ export type DefaultInput = {
   rules?: any
   required?: boolean
   options?: { label: string, value: string }[]
+  modelValue?: any
 }
 
 export type ReqConfig = {

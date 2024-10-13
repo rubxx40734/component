@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DefaultPropsData } from './type';
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import FormInput from './FormInput.vue';
 import FormSelect from './FormSelect.vue';
 import FormTextarea from './FormTextarea.vue';
@@ -8,10 +8,21 @@ import FormTextarea from './FormTextarea.vue';
 const formData = ref<{
   [key: string]: string
 }>({})
+
 const emit = defineEmits(['update-value'])
-withDefaults(defineProps<DefaultPropsData>(), {
+const props = withDefaults(defineProps<DefaultPropsData>(), {
   config: () => [],
+  modelValue: () => []
 })
+console.log('FormIndex', props)
+
+
+
+watch(() => props.modelValue, (newValue) => {
+  if (newValue) {
+    formData.value = { ...newValue }; // 初始化
+  }
+}, { immediate: true });
 
 const formType: Record<string, ReturnType<typeof defineComponent>> = {
   input: FormInput,
@@ -21,6 +32,7 @@ const formType: Record<string, ReturnType<typeof defineComponent>> = {
 
 
 const getFormData = ({ key, value }: { key: string, value: string }) => {
+  console.log(key, value)
   formData.value[key] = value
   emit('update-value', formData.value)
 }
@@ -33,7 +45,7 @@ const getFormData = ({ key, value }: { key: string, value: string }) => {
       <div class="flex flex-wrap justify-between">
         <div v-for="(item, i) in config" :key="i" class="mb-5"
           :class="[{ 'w-full': item.col === '12', 'w-[49%]': item.col === '6' }]">
-          <component :is="formType[item.formType]" v-bind="item" class="border gap-4 w-full"
+          <component :is="formType[item.formType]" v-bind="item" v-model="formData" class="border gap-4 w-full"
             @update-value="getFormData" />
         </div>
       </div>

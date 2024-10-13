@@ -18,7 +18,7 @@ service.interceptors.request.use((config: any) => {
   const auth = localStorage.getItem('AUTH_TOKEN')
   // 拿後台選物api來用 所以固定給他token
   if (!auth) {
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoblU3cmxjZXhyZVhZdFNaMWQtbDEiLCJpYXQiOjE3Mjc5NTA2NzQsImV4cCI6MTcyODU1NTQ3NH0.d9wQBeeLHi7d0aGY_sfzpP9WK_T2HlLOpwRG4f2mu7U`;
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoblU3cmxjZXhyZVhZdFNaMWQtbDEiLCJpYXQiOjE3Mjg4MDgxODQsImV4cCI6MTcyOTQxMjk4NH0.6ABtCeGv4eMzfMlZ0qiQQnFJj3mvnuUoCcTkjWyv5xs`;
     return config
   }
 })
