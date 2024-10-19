@@ -1,0 +1,6 @@
+mutation AdminLogin($in: LoginInputEntry!) {
+  adminLogin(in: $in) {
+    accessToken
+    expiresAt
+  }
+}

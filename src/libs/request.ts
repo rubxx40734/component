@@ -14,13 +14,15 @@ const service = axios.create({
 
 // req攔截
 service.interceptors.request.use((config: any) => {
+  console.log('config', config)
   loadingCount++;
   const auth = localStorage.getItem('AUTH_TOKEN')
   // 拿後台選物api來用 所以固定給他token
-  if (!auth) {
-    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJoblU3cmxjZXhyZVhZdFNaMWQtbDEiLCJpYXQiOjE3Mjg4MDgxODQsImV4cCI6MTcyOTQxMjk4NH0.6ABtCeGv4eMzfMlZ0qiQQnFJj3mvnuUoCcTkjWyv5xs`;
+  if (auth) {
+    config.headers.Authorization = `Bearer ${auth}`;
     return config
   }
+  return config
 })
 
 // res
@@ -36,6 +38,7 @@ service.interceptors.response.use((response) => {
     if (error && error.response) {
       console.log(error.response)
       switch (error.response.status) {
+
         case 401:
           error.message = error.response.data.debugInfo.log
           break
