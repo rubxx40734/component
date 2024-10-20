@@ -6,7 +6,7 @@ import { useRoute } from 'vue-router'
 import { computed } from 'vue';
 import { DefaultApolloClient } from '@vue/apollo-composable'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
-import { setContext } from '@apollo/client/link/core'
+// import { setContext } from '@apollo/client/link/core'
 import { provide } from 'vue'
 
 const route = useRoute()

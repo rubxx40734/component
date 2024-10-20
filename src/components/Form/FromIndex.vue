@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<DefaultPropsData>(), {
   config: () => [],
   modelValue: () => []
 })
-console.log('FormIndex', props)
+
 
 
 
@@ -32,9 +32,7 @@ const formType: Record<string, ReturnType<typeof defineComponent>> = {
 
 
 const getFormData = ({ key, value }: { key: string, value: string }) => {
-  console.log(key, value)
   formData.value[key] = value
-  console.log(formData.value)
   emit('update-value', formData.value)
 }
 </script>

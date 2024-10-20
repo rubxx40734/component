@@ -3,7 +3,7 @@
   <div class="mb-10">
     <p>login (graphql): {{ loginData }}</p>
     <FromIndex :config="loginConfig" @update-value="getLoginInfo"></FromIndex>
-    <button class="border border-solid border-primary-500 px-3 py-2" @click="login">登入</button>
+    <button class="border border-solid border-primary-500 px-3 py-2" @click="submitLogin">登入</button>
 
   </div>
   <button class="border border-solid border-primary-500 px-3 py-2" @click="getData">點擊我call api</button>
@@ -24,34 +24,15 @@
 import { ref } from 'vue'
 import request from '@/libs/request'
 import FromIndex from '@/components/Form/FromIndex.vue';
-import { useMutation } from '@vue/apollo-composable'
-import gql from 'graphql-tag'
-import { useLoginFn } from '@/graphql/login';
+import { useLoginAdmin } from '@/apis/login/index';
 
-useLoginFn()
+
+const { login } = useLoginAdmin()
+
 const apiDataLists: any = ref({})
 const formData = ref({})
-const loginData = ref({})
+const loginData = ref()
 
-const { mutate: useLogin } = useMutation(gql`
-    mutation AdminLogin($in: LoginInputEntry!) {
-      adminLogin(in: $in) {
-        accessToken
-        expiresAt
-      }
-    }
-    `, () => ({
-  variables: {
-    in: {
-      ...loginData.value
-    }
-  },
-}))
-const login = async () => {
-  // console.log('login')
-  const res = await useLogin()
-  console.log('登入結果', res)
-}
 const getData = async () => {
   const metasList = await request('/sys/site-metas/list', 'get', {
     currentPage: 1,
@@ -137,7 +118,21 @@ const getFormValue = (v: any) => {
 }
 
 const getLoginInfo = (v: any) => {
-  // console.log('登入', v)
   loginData.value = v
 }
+
+const submitLogin = async () => {
+  console.log(loginData.value)
+  if (!loginData.value.account || !loginData.value.pwd) {
+    alert('請輸入帳密')
+    return
+  }
+  const loginResult = await login(loginData.value)
+  console.log('loginResult', loginResult)
+  if (loginResult) {
+    localStorage.setItem('AUTH_TOKEN', loginResult.accessToken)
+    alert('登入成功')
+  }
+}
+
 </script>

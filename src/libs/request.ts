@@ -40,7 +40,7 @@ service.interceptors.response.use((response) => {
       switch (error.response.status) {
 
         case 401:
-          error.message = error.response.data.debugInfo.log
+          error.message = error.response.data.messageCode
           break
         case 403:
           error.message = '拒絕訪問'

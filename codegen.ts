@@ -4,16 +4,23 @@ import { config as dotenvConfig } from 'dotenv'
 
 // 加载 .env 文件中的环境变量
 dotenvConfig()
-console.log('xxxxxxx', env)
+
 const config: CodegenConfig = {
   schema: `${env.VITE_API_URL}/graphql`,
-  documents: ["src/**/*.gql"],
+  // 要編譯的檔案
+  documents: ["src/**/*.graphql"],
   ignoreNoDocuments: true,
   generates: {
-    "./src/graphql/": {
-      preset: "client",
+    "./src/apis/graphql-schema.ts": {
+      plugins: ['typescript', 'typescript-operations'],
       config: {
-        documentMode: "string",
+        strictScalars: true,
+        vueCompositionApiImportFrom: 'vue',
+        scalars: {
+          UnixDate: 'number',
+          Upload: 'File',
+          JSON: '{ [key: string]: any }',
+        },
       },
     },
   },
