@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import NotFound from '@/views/NotFound.vue'
 import FromPage from '@/views/FromPage.vue'
 import RestfulPage from '@/views/RestfulPage.vue'
+import JsPage from '@/views/JsPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +24,12 @@ const router = createRouter({
       path: '/RestfulPage',
       name: 'restfulPage',
       component: RestfulPage,
+      meta: { layout: 'default' },
+    },
+    {
+      path: '/JsPage',
+      name: 'jsPage',
+      component: JsPage,
       meta: { layout: 'default' },
     },
     {

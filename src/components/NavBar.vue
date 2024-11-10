@@ -14,11 +14,11 @@ const router = [
   },
   {
     label: 'gql封裝',
-    router: '/'
+    router: '/RestfulPage'
   },
   {
     label: '後續補上....',
-    router: '/'
+    router: '/jspage'
   },
 ]
 </script>

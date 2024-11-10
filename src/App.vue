@@ -8,6 +8,8 @@ import { DefaultApolloClient } from '@vue/apollo-composable'
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
 // import { setContext } from '@apollo/client/link/core'
 import { provide } from 'vue'
+import { setCssVar } from 'quasar';
+
 
 const route = useRoute()
 const layout = computed(() => {
@@ -30,6 +32,11 @@ const apolloClient = new ApolloClient({
 })
 provide(DefaultApolloClient, apolloClient)
 
+setCssVar('primary', '#f9d950');
+setCssVar('secondary', '#5D4E46'); //#4B3B40; #69584F
+setCssVar('positive', '#218380');
+setCssVar('negative', '#AB3428');
+setCssVar('info', '#3C779B');
 </script>
 
 <template>
