@@ -122,7 +122,6 @@ const getLoginInfo = (v: any) => {
 }
 
 const submitLogin = async () => {
-  console.log(loginData.value)
   if (!loginData.value.account || !loginData.value.pwd) {
     alert('請輸入帳密')
     return
