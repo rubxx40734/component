@@ -73,11 +73,11 @@ const methodUpdate = async (v: any) => {
     formData.append('useFor', 'test');
     formData.append('file', uploadFile); // 將文件添加到formData
 
-    const uploadData = await request('/sys/uploads/single', 'post', formData, {
+    const uploadData = await request('apiUpload.single', formData, {
       isFile: true
     })
     if (uploadData.status) {
-      uploadImage.value = `${import.meta.env.VITE_API_URL}${uploadData.result.sourcePath}`
+      uploadImage.value = `${import.meta.env.VITE_API_URL}/static${uploadData.result.sourcePath}`
       console.log(props.uniKey)
       emit('update-value', {
         key: props.uniKey,
